@@ -1,0 +1,402 @@
+/* ===== RESET BÁSICO ===== */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/* ===== CONTENEDOR DEL MENU ===== */
+.menu {
+    background: #9b7676;
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+
+.menu a:hover {
+    background: #487c5f;
+    color: #000;
+}
+
+/* ===== BUSQUEDA ===== */
+
+.busqueda {
+    max-width: 600px;
+    margin: 1.5rem auto;
+    text-align: center;
+}
+
+.busqueda form {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.busqueda input[type="text"] {
+    width: 60%;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.busqueda input[type="submit"] {
+    padding: 0.5rem 1rem;
+    border: none;
+    background: #9b7676;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.busqueda input[type="submit"]:hover {
+    background: #695353;
+}
+
+/* ===== CATEGORIA ===== */
+.categorias {
+    max-width: 600px;
+    margin: 1.5rem auto;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.categorias strong {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.categorias a {
+    display: inline-block;
+    margin: 0.25rem 0.4rem;
+    padding: 0.3rem 0.6rem;
+    color: #333;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+
+.categorias a:hover {
+    background: #b68c4d;
+    color: #fff;
+    border-color: #333;
+}
+
+
+/* ===== TITULOS Y CONTENIDO ===== */
+h1 {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #333;
+}
+
+
+
+/* ===== LISTADO DE RECETAS ===== */
+.lista-recetas {
+    list-style: none;
+    padding: 0;
+    max-width: 1200px;
+    margin: 2rem auto;
+}
+
+.receta-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    margin-bottom: 1rem;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.receta-desc {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 500;
+}
+
+
+.acciones {
+    display: flex;
+    gap: 0.5rem;
+}
+
+
+.acciones .btn {
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    transition: background 0.2s ease;
+}
+
+.acciones .btn.ver {
+    background: #9b7676;
+}
+
+.acciones .btn.editar {
+    background: #b68c4d;
+}
+
+.acciones .btn.borrar {
+    background: #8f0f06;
+}
+
+.acciones .btn:hover {
+    filter: brightness(0.9);
+}
+
+
+
+.receta-imagen {
+    flex: 0 0 250px;
+    margin-right: 1rem;
+}
+
+.receta-imagen img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+
+.receta-contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* ======== DETALLE DE RECETA ======== */
+.ver-platos {
+    list-style: none;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.ver-platos li {
+    font-size: 1.1rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    color: #333;
+}
+
+.ver-platos li:last-child {
+    border-bottom: none;
+}
+
+
+.enlace {
+    color: red;
+    text-decoration: none;
+}
+
+
+
+.detalle-receta {
+
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.detalle-receta .imagen-principal {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.detalle-receta .imagen-principal img {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.volver {
+    display: block;
+    width: max-content;
+    margin: 1rem auto;
+    padding: 0.6rem 1.2rem;
+    background: #ff9800;
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 6px;
+    transition: background 0.2s ease;
+}
+
+.volver:hover {
+    background: #e68900;
+}
+
+
+
+/* ===== FORMULARIO NUEVA RECETA  Y EDITAR RECETA===== */
+.form-receta {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.form-receta .campo input[type="text"] {
+    width: 96%;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.campo input[type="url"] {
+    width: 96%;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+.campo select {
+    width: 96%;
+    padding: 0.7rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+
+.acciones-form {
+    text-align: center;
+}
+
+.btn-guardar {
+    background: #4caf50;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-guardar:hover {
+    background: #45a049;
+}
+
+
+/* ===== BORRAR RECETA===== */
+
+.campo-borrar {
+    padding: 1.5rem;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.btn-borrar {
+    background: #a50d0d;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-borrar:hover {
+    background: #720303;
+}
+
+
+
+/* ===== MENSAJE CONFIRMACION BORRAR ===== */
+
+.confirmacion-borrar {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+
+
+
+
+
+/* ===== BOTONES VISTA CHEF ===== */
+.botones {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+}
+
+.botones .btn-juntos {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: background 0.2s ease;
+}
+
+.botones .color1 {
+    background: #9b7676;
+}
+
+.botones .color1:hover {
+    background: #7e5f5f;
+}
+
+.botones .color2 {
+    background-color: #ff9800;
+}
+.botones .color2:hover {
+    background: #e68900;
+} 
