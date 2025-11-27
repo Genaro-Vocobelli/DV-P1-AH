@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 
-// Clave secreta (en producción debería estar en .env)
+// Clave secreta 
 const SECRET_KEY = 'mejor_cocinero';
 
 /**

@@ -83,7 +83,7 @@ export async function editarComentario(id, texto) {
 }
 
 /**
- * Eliminar comentario (soft delete)
+ * Eliminar comentario 
  */
 export async function borrarComentario(id) {
   await client.connect();

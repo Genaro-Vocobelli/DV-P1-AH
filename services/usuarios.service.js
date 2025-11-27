@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 const client = new MongoClient("mongodb+srv://admin:admin@hibridas.rovg5xk.mongodb.net/AH20232CP1?retryWrites=true&w=majority");
 const db = client.db("AH20232CP1");
 
-/**
+/** 
  * Buscar usuario por email
  */
 export async function getUserByEmail(email) {

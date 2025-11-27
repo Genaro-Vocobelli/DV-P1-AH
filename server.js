@@ -11,7 +11,7 @@ import ComentariosApiRoute from "./api/routes/comentarios.api.routes.js"
 
 const app = express();
 
-// CORS DEBE IR PRIMERO
+// CORS 
 app.use(cors({
   origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
   credentials: true,
@@ -26,11 +26,11 @@ app.use( express.json() )
 app.use(RecetasRoute)
 app.use(ChefsRoute)
 
-// Rutas API
+// Rutas API 
 app.use("/api/auth", AuthApiRoute)
 app.use("/api/recetas", RecetasApiRoute)
 app.use("/api/chefs", ChefsApiRoute)
-app.use("/api/comentarios", ComentariosApiRoute) // ← NUEVA LÍNEA
+app.use("/api/comentarios", ComentariosApiRoute) 
 
 app.use(express.static("public"));
 app.listen(3333, () => console.log("Servidor funcionando en puerto 3333"));
