@@ -1,0 +1,207 @@
+import { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { recetasService } from '../services/recetasService';
+import { chefsService } from '../services/chefsService';
+import './NuevaReceta.css';
+
+function EditarReceta() {
+  const { id } = useParams();
+  const [formData, setFormData] = useState({
+    name: '',
+    description: '',
+    section: '',
+    link: '',
+    img: '',
+    chefId: ''
+  });
+  const [chefs, setChefs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [loadingReceta, setLoadingReceta] = useState(true);
+  
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    cargarReceta();
+    cargarChefs();
+  }, [id]);
+
+  const cargarReceta = async () => {
+    try {
+      const receta = await recetasService.getById(id);
+      setFormData({
+        name: receta.name || '',
+        description: receta.description || '',
+        section: receta.section || '',
+        link: receta.link || '',
+        img: receta.img || '',
+        chefId: receta.chefId || ''
+      });
+    } catch (err) {
+      setError('Error al cargar la receta');
+    } finally {
+      setLoadingReceta(false);
+    }
+  };
+
+  const cargarChefs = async () => {
+    try {
+      const data = await chefsService.getMisChefs();
+      setChefs(data);
+    } catch (err) {
+      console.error('Error al cargar chefs:', err);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError('');
+    setLoading(true);
+
+    if (!formData.name || !formData.description || !formData.section || !formData.img) {
+      setError('Los campos nombre, descripción, categoría e imagen son obligatorios');
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const recetaData = {
+        ...formData,
+        chefId: formData.chefId || null
+      };
+      
+      await recetasService.update(id, recetaData);
+      navigate('/mis-recetas');
+    } catch (err) {
+      setError(err.response?.data?.message || 'Error al editar la receta');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loadingReceta) return <div className="loading">Cargando...</div>;
+
+  return (
+    <div className="nueva-receta-container">
+      <div className="form-container">
+        <h1>Editar Receta</h1>
+
+        {error && <div className="error-message">{error}</div>}
+
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="name">Nombre de la receta *</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Ej: Milanesas napolitanas"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="description">Descripción *</label>
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              placeholder="Describe tu receta..."
+              rows="4"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="section">Categoría *</label>
+            <select
+              id="section"
+              name="section"
+              value={formData.section}
+              onChange={handleChange}
+              required
+            >
+              <option value="">Selecciona una categoría</option>
+              <option value="entradas">Entradas</option>
+              <option value="plato principal">Plato Principal</option>
+              <option value="postres">Postres</option>
+              <option value="bebidas">Bebidas</option>
+              <option value="vegano">Vegano</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="chefId">Chef (opcional)</label>
+            <select
+              id="chefId"
+              name="chefId"
+              value={formData.chefId}
+              onChange={handleChange}
+            >
+              <option value="">Sin chef asignado</option>
+              {chefs.map((chef) => (
+                <option key={chef._id} value={chef._id}>
+                  {chef.nombre}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="img">URL de la imagen *</label>
+            <input
+              type="url"
+              id="img"
+              name="img"
+              value={formData.img}
+              onChange={handleChange}
+              placeholder="https://ejemplo.com/imagen.jpg"
+              required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="link">Video de YouTube (opcional)</label>
+            <input
+              type="url"
+              id="link"
+              name="link"
+              value={formData.link}
+              onChange={handleChange}
+              placeholder="https://youtube.com/watch?v=..."
+            />
+          </div>
+
+          <div className="form-actions">
+            <button 
+              type="button" 
+              onClick={() => navigate('/mis-recetas')}
+              className="btn-secondary"
+            >
+              Cancelar
+            </button>
+            <button 
+              type="submit" 
+              className="btn-primary"
+              disabled={loading}
+            >
+              {loading ? 'Guardando...' : 'Guardar Cambios'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default EditarReceta;
